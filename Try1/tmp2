@@ -1,0 +1,60 @@
+declare fun {Factorial N}
+	   local FactorialAux in
+	      fun {FactorialAux N}
+		 if N >= 1
+		 then N*{FactorialAux N-1}
+		 else 1
+		 end
+	      end
+	      {FactorialAux N}
+	   end
+	end
+
+
+declare fun {Power N X}
+	   local PowerAux in
+	      fun {PowerAux N X}
+		 if N >= 1
+		 then X*{PowerAux N-1 X}
+		 else 1
+		 end
+	      end
+	      {PowerAux N X}
+	   end
+	end
+
+declare fun {Sine N Mult X}
+	   local SineAux in
+	      fun {SineAux N Mult X}
+		(Mult*{Power 2*N+1 X})*{Factorial 2*N+1}
+	      end
+	      {SineAux N Mult X}
+	   end
+	end
+
+		 
+
+declare fun lazy {ListOfIntsFrom N X}
+	   local ListOfIntsFromAux in
+	      fun {ListOfIntsFromAux N Mult X}
+		 {Sine N Mult X}|{ListOfIntsFromAux N+1 ~Mult X}
+	      end
+	      {ListOfIntsFromAux N 1 X}
+	   end
+	end
+
+declare fun {Take Xs K}
+	   local TakeAux in
+	      fun {TakeAux Xs K}
+		 if K==0 then nil
+		 else Xs.1|{Take Xs.2 K-1}
+		 end
+	      end
+	      {TakeAux Xs K}
+	   end
+	end
+
+{Browse {Take {ListOfIntsFrom 0 2} 4}}
+
+
+{Browse 1.0*{Factorial 4}/{Factorial 5}}

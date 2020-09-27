@@ -1,0 +1,20 @@
+
+local foldr in
+   fun {foldr List BinOp Identity}
+      case L of nil then Identity
+      [] H|T then {BinOp H {foldr T BinOp Identity}}
+      end
+   end
+end
+
+local foldl in
+   fun {foldl List BinOp Identity}
+      case L of nil then Identity
+      H|[]T then { foldl T  BinOp {BinOp H Identity} Identity }
+      end
+   end
+end
+
+
+
+{Browse {Diagonal [[1 0 0 0][0 1 0 1][0 0 1 0][0 0 0 1]] }}

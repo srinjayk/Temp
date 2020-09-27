@@ -1,0 +1,28 @@
+
+local FoldR in
+    fun {FoldR L B I}
+       case L
+       of nil then I
+       [] H|T then {B H {FoldR T B I}}
+       end
+    end
+end
+
+
+declare fun {Map L F}
+	   local MapAux in
+	      fun {MapAux L F}
+		 case L of nil then nil
+		 [] H|T then {FoldR [H] fun{$ X 0}{F X} end 0} | {MapAux T F}
+		 end
+	      end
+	      {MapAux L F}
+	   end
+	end
+
+
+
+{Browse {Map [0 1 2 3 5 58 55] 
+               fun {$ X} X*X end 
+               }}
+

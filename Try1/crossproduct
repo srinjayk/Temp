@@ -1,0 +1,29 @@
+declare fun {Concat L M}
+   case L
+   of nil
+   then M
+   [] H|T then H|{Concat T M}
+   end
+end
+
+
+declare fun {Preface E L}
+   case L
+   of nil
+   then nil
+   [] H|T then [E H]|{Preface E T}
+   end
+end
+
+declare fun {CrossProduct L M}
+   case L
+   of nil
+   then nil
+   [] H|T then {Concat {Preface H M} {CrossProduct T M }}
+   end
+end
+
+
+
+
+{Browse {CrossProduct [1 23] [1 2 3 3 6]}}

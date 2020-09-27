@@ -1,0 +1,20 @@
+declare fun {ZipWith ListL ListM BinOp}
+	   local ZipWithAux in
+	      fun {ZipWithAux ListL ListM B}
+		 case ListL
+		 of nil then nil
+		 [] H|T then
+		    case ListM
+		    of nil then nil
+		    [] N|O then {BinOp H N}|{ZipWithAux T O BinOp}
+		    end      
+		 end
+	      end
+	      {ZipWithAux ListL ListM BinOp}
+	   end
+	end
+
+
+{Browse {ZipWith [0 1 2 3 5 58 55] [1 2 3 5 6 8 5] 
+               fun {$ X Y} X+Y end 
+	}}

@@ -1,0 +1,15 @@
+declare
+fun {Factorial N}
+   local FactorialTR in
+      fun {FactorialTR N I Value}
+	 if I>N
+	 then Value
+	 else {FactorialTR N I+1 I*Value}
+	 end
+      end
+      {FactorialTR N 1 1}
+   end
+end
+
+{Browse {Factorial 4}}
+   

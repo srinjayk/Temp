@@ -1,0 +1,34 @@
+declare fun {Map L F}
+	   local MapAux in
+	      fun {MapAux L F}
+		 case L
+		 of nil then nil
+		 [] H|T then {F H}|{MapAux T F}
+		 end
+	      end
+	      {MapAux L F}
+	   end
+	end
+
+
+declare fun {Zip L M B}
+	   local ZipAux in
+	      fun {ZipAux L M B}
+		 case L
+		 of nil then nil
+		 [] H|T then
+		    case M
+		    of nil then nil
+		    [] N|O then {B H N}|{ZipAux T O B}
+		    end      
+		 end
+	      end
+	      {ZipAux L M B}
+	   end
+	end
+
+
+{Browse {Map [0 1 2 3 5 58 55]
+               fun {$ X} X*X end 
+	}}
+

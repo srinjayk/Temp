@@ -1,0 +1,10 @@
+declare fun {Concat L M}
+	   case L
+	   of nil
+	   then M
+	   [] H|T then H|{Concat T M}
+	   end
+	end
+
+
+{Browse {Concat [1 23] [1 2 3 3 6]}}

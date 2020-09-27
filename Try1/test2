@@ -1,0 +1,27 @@
+
+declare fun {Factorial N}
+	   local FactorialAux in
+	      fun {FactorialAux N}
+		 if N =< 1
+		 then N*{Factorial N-1}
+		 else 1
+		 end
+	      end
+	      {FactorialAux N}
+	   end
+	end
+
+
+declare fun {Power N X}
+	   local PowerAux in
+	      fun {PowerAux N X}
+		 if N =< 1
+		 then X*{PowerAux N-1 X}
+		 else 1
+		 end
+	      end
+	      {PowerAux N X}
+	   end
+	end
+
+{Browse { Factorial 4}}

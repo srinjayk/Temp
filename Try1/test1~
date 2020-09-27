@@ -1,0 +1,12 @@
+local FoldR in
+   fun {FoldR L B I}
+      case L
+      of nil then I
+      [] H|T then {B H {FoldR T B I}}
+      end
+   end
+end
+
+{Browse {FoldR [0 1 2 3 5 58 55] 
+               fun {$ X Y} X+Y end 
+               0}}

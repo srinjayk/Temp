@@ -1,0 +1,10 @@
+declare
+fun {ListLength L}
+   case L
+   of nil
+   then 0
+   else 1+{ListLength L.2}
+   end
+end
+
+{Browse {ListLength [1 23]}}
